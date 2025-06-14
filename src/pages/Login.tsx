@@ -39,6 +39,9 @@ const Login = () => {
           description: "Welcome to SVIT Student Portal",
         });
         localStorage.setItem('user', JSON.stringify({ username: formData.username }));
+        
+        // Redirect to the specified website
+        window.location.href = 'https://svit-campus-connect.vercel.app/';
       } else {
         toast({
           title: "Login Failed",
