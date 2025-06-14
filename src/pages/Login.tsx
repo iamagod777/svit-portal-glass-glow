@@ -1,12 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { gsap } from 'gsap';
-import { Eye, EyeOff, LogIn } from 'lucide-react';
+import { Eye, EyeOff, User, GraduationCap } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: '',
+    username: '',
     password: ''
   });
   const [showPassword, setShowPassword] = useState(false);
@@ -15,7 +15,7 @@ const Login = () => {
 
   useEffect(() => {
     // GSAP Animations
-    gsap.fromTo('.login-card', 
+    gsap.fromTo('.login-container', 
       { opacity: 0, y: 50, scale: 0.9 }, 
       { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'power3.out' }
     );
@@ -34,13 +34,12 @@ const Login = () => {
 
     // Simulate API call
     setTimeout(() => {
-      if (formData.email && formData.password) {
+      if (formData.username && formData.password) {
         toast({
           title: "Login Successful!",
           description: "Welcome to SVIT Student Portal",
         });
-        localStorage.setItem('user', JSON.stringify({ email: formData.email }));
-        // You can redirect to dashboard or handle successful login here
+        localStorage.setItem('user', JSON.stringify({ username: formData.username }));
       } else {
         toast({
           title: "Login Failed",
@@ -54,84 +53,111 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-8 bg-slate-900">
-      <div className="login-card glass-card p-8 w-full max-w-4xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          {/* Left side - Branding */}
-          <div className="text-center lg:text-left">
-            <div className="w-20 h-20 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto lg:mx-0 mb-6 glow-blue">
-              <LogIn size={40} className="text-white" />
+      <div className="login-container w-full max-w-md">
+        {/* Header Section */}
+        <div className="text-center mb-8">
+          <div className="w-20 h-20 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-sm border border-blue-400/30">
+            <GraduationCap size={40} className="text-blue-400" />
+          </div>
+          <h1 className="text-2xl font-bold text-white mb-2">
+            Swami Vivekananda Institute of Technology
+          </h1>
+          <p className="text-blue-400 text-sm font-medium tracking-wider">LEARN • LEAD • SERVE</p>
+        </div>
+
+        {/* Login Form Card */}
+        <div className="glass-card p-8">
+          <div className="text-center mb-6">
+            <div className="w-12 h-12 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm border border-blue-400/30">
+              <User size={24} className="text-blue-400" />
             </div>
-            <h1 className="text-3xl font-bold text-white mb-4">SVIT Student Portal</h1>
-            <p className="text-gray-400 text-lg">Sign in to access your account and explore academic resources</p>
+            <h2 className="text-xl font-semibold text-white mb-2">Login to Student Portal</h2>
+            <p className="text-gray-400 text-sm">Access your academic dashboard securely</p>
           </div>
 
-          {/* Right side - Login Form */}
-          <div className="w-full">
-            <div className="text-center mb-6">
-              <h2 className="text-xl font-semibold text-white mb-2">Login to Student Portal</h2>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                  Email Address
-                </label>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label htmlFor="username" className="block text-sm font-medium text-gray-300 mb-2">
+                Username
+              </label>
+              <div className="relative">
+                <User size={18} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" />
                 <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
+                  type="text"
+                  id="username"
+                  name="username"
+                  value={formData.username}
                   onChange={handleInputChange}
-                  className="glass-input w-full px-4 py-3 text-white placeholder:text-gray-500"
-                  placeholder="Enter your email"
+                  className="glass-input w-full pl-12 pr-4 py-3 text-white placeholder:text-gray-500"
+                  placeholder="Enter Username"
                   required
                 />
               </div>
+            </div>
 
-              <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">
-                  Password
-                </label>
-                <div className="relative">
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    id="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    className="glass-input w-full px-4 py-3 pr-12 text-white placeholder:text-gray-500"
-                    placeholder="Enter your password"
-                    required
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-white transition-colors z-10"
-                  >
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between">
-                <label className="flex items-center space-x-2">
-                  <input type="checkbox" className="rounded border-gray-300" />
-                  <span className="text-sm text-gray-300">Remember me</span>
-                </label>
-                <button type="button" className="text-sm text-blue-400 hover:text-blue-300 transition-colors">
-                  Forgot Password?
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">
+                Password
+              </label>
+              <div className="relative">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  className="glass-input w-full px-4 py-3 pr-12 text-white placeholder:text-gray-500"
+                  placeholder="Enter Password"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-white transition-colors"
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
+            </div>
 
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="w-full glass-button glow-blue-hover py-3 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isLoading ? 'Signing in...' : 'Sign In'}
+            <div className="flex items-center justify-between text-sm">
+              <label className="flex items-center space-x-2">
+                <input 
+                  type="checkbox" 
+                  className="w-4 h-4 rounded border-gray-600 bg-transparent text-blue-600 focus:ring-blue-500 focus:ring-2"
+                />
+                <span className="text-gray-300">Remember me</span>
+              </label>
+              <button type="button" className="text-blue-400 hover:text-blue-300 transition-colors">
+                Forgot Password ?
               </button>
-            </form>
-          </div>
+            </div>
+
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-blue-500/25"
+            >
+              {isLoading ? 'Signing in...' : 'Login'}
+            </button>
+
+            <div className="text-center text-sm text-gray-400">
+              Don't have an account?{' '}
+              <button type="button" className="text-blue-400 hover:text-blue-300 transition-colors font-medium">
+                Register here
+              </button>
+            </div>
+          </form>
+        </div>
+
+        {/* Footer */}
+        <div className="text-center mt-6">
+          <p className="text-gray-400 text-sm">
+            Need help? Contact{' '}
+            <a href="mailto:support@svit.edu" className="text-blue-400 hover:text-blue-300 transition-colors">
+              support@svit.edu
+            </a>
+          </p>
         </div>
       </div>
     </div>
