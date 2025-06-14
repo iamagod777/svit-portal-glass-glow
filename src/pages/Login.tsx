@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { Mail, Lock, Eye, EyeOff, LogIn } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
@@ -12,7 +11,6 @@ const Login = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
   const { toast } = useToast();
 
   useEffect(() => {
@@ -39,10 +37,10 @@ const Login = () => {
       if (formData.email && formData.password) {
         toast({
           title: "Login Successful!",
-          description: "Welcome back to SVIT Portal",
+          description: "Welcome to SVIT Student Portal",
         });
         localStorage.setItem('user', JSON.stringify({ email: formData.email }));
-        navigate('/dashboard');
+        // You can redirect to dashboard or handle successful login here
       } else {
         toast({
           title: "Login Failed",
@@ -55,14 +53,14 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-8">
+    <div className="min-h-screen flex items-center justify-center px-4 py-8 bg-slate-900">
       <div className="login-card glass-card p-8 w-full max-w-md">
         <div className="text-center mb-8">
           <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 glow-blue">
             <LogIn size={32} className="text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-white mb-2">Welcome Back</h1>
-          <p className="text-gray-400">Sign in to access your student portal</p>
+          <h1 className="text-2xl font-bold text-white mb-2">SVIT Student Portal</h1>
+          <p className="text-gray-400">Sign in to access your account</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -116,9 +114,9 @@ const Login = () => {
               <input type="checkbox" className="rounded border-gray-300" />
               <span className="text-sm text-gray-300">Remember me</span>
             </label>
-            <Link to="/forgot-password" className="text-sm text-blue-400 hover:text-blue-300 transition-colors">
+            <button type="button" className="text-sm text-blue-400 hover:text-blue-300 transition-colors">
               Forgot password?
-            </Link>
+            </button>
           </div>
 
           <button
@@ -129,15 +127,6 @@ const Login = () => {
             {isLoading ? 'Signing in...' : 'Sign In'}
           </button>
         </form>
-
-        <div className="mt-6 text-center">
-          <p className="text-gray-400">
-            Don't have an account?{' '}
-            <Link to="/register" className="text-blue-400 hover:text-blue-300 transition-colors font-medium">
-              Create Account
-            </Link>
-          </p>
-        </div>
       </div>
     </div>
   );
