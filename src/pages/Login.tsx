@@ -69,14 +69,14 @@ const Login = () => {
               Email Address
             </label>
             <div className="relative">
-              <Mail size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <Mail size={18} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 z-10" />
               <input
                 type="email"
                 id="email"
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="glass-input w-full pl-10"
+                className="glass-input w-full pl-12 pr-4 text-white placeholder:text-gray-500"
                 placeholder="Enter your email"
                 required
               />
@@ -88,23 +88,23 @@ const Login = () => {
               Password
             </label>
             <div className="relative">
-              <Lock size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <Lock size={18} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 z-10" />
               <input
                 type={showPassword ? 'text' : 'password'}
                 id="password"
                 name="password"
                 value={formData.password}
                 onChange={handleInputChange}
-                className="glass-input w-full pl-10 pr-10"
+                className="glass-input w-full pl-12 pr-12 text-white placeholder:text-gray-500"
                 placeholder="Enter your password"
                 required
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-white transition-colors z-10"
               >
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
           </div>
