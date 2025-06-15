@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { MapPin, Camera, Car, Building, Utensils, ArrowLeft } from 'lucide-react';
@@ -38,15 +37,15 @@ const CampusMap = () => {
     },
     {
       id: 'parking-street-view',
-      title: '🚗 Main Parking Area – Explore in 360°',
+      title: '🅿️ Main Parking Area (360° Street View)',
       type: 'streetview',
       icon: Car,
-      embedUrl: 'https://www.google.com/maps/embed?pb=!4v1734192100000!6m8!1m7!1sCIHM0ogKEICAgICaybSxgwE!2m2!1d17.4401362!2d78.4963785!3f343.92!4f-11.11!5f0.7820865974627469',
+      embedUrl: 'https://www.google.com/maps/embed?pb=!4v1734192100000!6m8!1m7!1sCIHM0ogKEICAgICaybSxgwE!2m2!1d17.4401362!2d78.4963785!3f292.65!4f-15.32!5f0.7820865974627469',
       description: 'Navigate through the main parking area in 360° view'
     },
     {
       id: 'campus-entrance',
-      title: '🏫 SVIT Main Entrance – Street Perspective',
+      title: '🏫 SVIT Entrance Walkthrough',
       type: 'streetview',
       icon: Camera,
       embedUrl: 'https://www.google.com/maps/embed?pb=!4v1734192200000!6m8!1m7!1s8JnnXbGlUun1gy49dN9g6w!2m2!1d17.440383!2d78.4961828!3f129.4!4f-5.17!5f0.7820865974627469',
@@ -57,14 +56,14 @@ const CampusMap = () => {
   const campusImages = [
     {
       id: 'main-building',
-      title: '🏫 SVIT Main Building',
+      title: '🏛️ Main Academic Block',
       icon: Building,
       imageUrl: 'https://svit.ac.in/images/svit.jpg',
       description: 'The iconic main academic building of SVIT'
     },
     {
       id: 'canteen',
-      title: '🍴 Campus Canteen – Student Favorite Spot',
+      title: '🍴 Student Canteen',
       icon: Utensils,
       imageUrl: 'https://svit.ac.in/images/svit/3.jpg',
       description: 'Where students gather for meals and conversations'
