@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
-import { ArrowRight, BookOpen, Users, Calendar, Award } from 'lucide-react';
+import { ArrowRight, BookOpen, Users, Calendar, Award, MapPin } from 'lucide-react';
 
 const Index = () => {
   useEffect(() => {
@@ -56,9 +56,10 @@ const Index = () => {
       description: 'Stay updated with campus events and important dates'
     },
     {
-      icon: Award,
-      title: 'Achievement Tracking',
-      description: 'Monitor your academic progress and achievements'
+      icon: MapPin,
+      title: 'Campus Map',
+      description: 'Explore our campus with interactive maps and 360° views',
+      link: '/campus-map'
     }
   ];
 
@@ -111,11 +112,8 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, index) => {
               const Icon = feature.icon;
-              return (
-                <div
-                  key={index}
-                  className="feature-card glass-card p-6 hover:bg-white/10 transition-all duration-300 group cursor-pointer"
-                >
+              const CardContent = (
+                <div className="feature-card glass-card p-6 hover:bg-white/10 transition-all duration-300 group cursor-pointer h-full">
                   <div className="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-600/30 transition-colors">
                     <Icon size={24} className="text-blue-400" />
                   </div>
@@ -125,6 +123,22 @@ const Index = () => {
                   <p className="text-gray-400 leading-relaxed">
                     {feature.description}
                   </p>
+                  {feature.link && (
+                    <div className="mt-4 flex items-center text-blue-400 text-sm group-hover:text-blue-300 transition-colors">
+                      <span>Explore Campus</span>
+                      <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  )}
+                </div>
+              );
+
+              return feature.link ? (
+                <Link key={index} to={feature.link} className="block h-full">
+                  {CardContent}
+                </Link>
+              ) : (
+                <div key={index} className="h-full">
+                  {CardContent}
                 </div>
               );
             })}
