@@ -36,14 +36,6 @@ const CampusMap = () => {
       description: 'Explore the complete campus layout from above'
     },
     {
-      id: 'parking-street-view',
-      title: '🅿️ Main Parking Area (360° Street View)',
-      type: 'streetview',
-      icon: Car,
-      embedUrl: 'https://www.google.com/maps/embed?pb=!4v1734192100000!6m8!1m7!1sCIHM0ogKEICAgICaybSxgwE!2m2!1d17.4401362!2d78.4963785!3f292.65!4f-15.32!5f0.7820865974627469',
-      description: 'Navigate through the main parking area in 360° view'
-    },
-    {
       id: 'campus-entrance',
       title: '🏫 SVIT Entrance Walkthrough',
       type: 'streetview',
